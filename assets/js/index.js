@@ -64,11 +64,11 @@ const getStudentInfo = (student) => studentFullInfo.entries(student);
 // 3.5 Подсчитать количество отрицательных чисел в массиве
 
 const arr1 = [
-  3, 4, 6, 8, 0, 33, 55, 77, 99, 0, 22, 50, 7, 40, 46, 78, 56, 34, 76, 32, 90,
+  3, 4, 6, 8, 0, 33, 55, 77, 99, 0, 22, 50, 7, 40, 46, -78, 56, -34, 76, 32, 90,
   44, 77, 79, 66,
 ];
 
-let arr2 = [];
+const arr2 = [];
 for (let i = 0; i < 10; i++) {
   arr2.push(Math.floor(Math.random() * 10));
 }
@@ -107,20 +107,99 @@ function negativeElementOutput(arr) {
   let result = 0;
   for (let index = 0; index < arr.length; index++) {
     if (arr[index] < 0) {
-    result++
+      result++;
     }
-  }return result;
+  }
+  return result;
 }
+
+// 4 Создать классы:
+// - Книга (автор, название, год издания, издательство)
+// - Электронная версия книги (автор, название, год издания, издательство, формат, электронный номер)
+
+class PaperBook {
+  constructor(author, name, yearPublish, publishFirm) {
+    this.author = author;
+    this.name = name;
+    this.yearPublish = yearPublish;
+    this.publishFirm = publishFirm;
+  }
+}
+
+class ElectronicBookVersion extends PaperBook {
+  constructor(
+    author,
+    name,
+    yearPublish,
+    publishFirm,
+    format,
+    electronicNumber
+  ) {
+    super(author, name, yearPublish, publishFirm);
+    this.format = format;
+    this.electronicNumber = electronicNumber;
+  }
+}
+const book1 = new ElectronicBookVersion(
+  "Marijn Haverbeke",
+  "ELOQUENT JAVASCRIPT",
+  2019,
+  "Kiyiv",
+  "pdf",
+  112233
+);
 
 /*5 Требуется написать функцию, выводящую в консоль числа от 1 до n, где n — это целое число, которая функция принимает в качестве параметра, с такими условиями:
 вывод fizzbuzz вместо чисел, кратных как 3, так и 5.
 вывод fizz вместо чисел, кратных 3;
 вывод buzz вместо чисел, кратных 5;*/
-function fizz(num) {
-  for (let i = 1; i < num; i++) {
+
+function fizz(n) {
+  for (let i = 1; i < n; i++) {
     let b = "";
-    if (i % 3 === 0) b += "Fizz";
-    if (i % 5 === 0) b += "Buzz";
+    if (i % 3 === 0) {
+      b += "Fizz";
+    }
+    if (i % 5 === 0) {
+      b += "Buzz";
+    }
     console.log(b || i);
   }
 }
+
+// 6
+// // С сервера передается обьект, имеющий следующую структуру:
+
+// С помощью деструктуризации:
+// - создать переменную users на основании массива в обьекте serverResponse
+// - создать отдельные переменные для 3 и 4 пользователя
+
+const serverResponse = {
+  data: {
+    data: [
+      {
+        id: 0,
+        name: "John",
+        lastName: "Doe",
+      },
+      {
+        id: 1,
+        name: "Jane",
+        lastName: "Doe",
+      },
+      {
+        id: 2,
+        name: "Admin",
+        lastName: "Tiranovich",
+      },
+      {
+        id: 3,
+        name: "User",
+        lastName: "Undefinovich",
+      },
+    ],
+  },
+};
+
+const {data: {...users}} = serverResponse;
+const [,,{thirdUser}] = serverResponse;
