@@ -202,4 +202,5 @@ const serverResponse = {
 };
 
 const {data: {...users}} = serverResponse;
-const [,,{thirdUser}] = serverResponse;
+const {data:{data:[,,thirdUser]}} = serverResponse;
+const {data:{data:[,,,fourthUser]}} = serverResponse;
